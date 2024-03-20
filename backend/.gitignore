@@ -1,0 +1,16 @@
+venv
+venv/
+
+media
+media/
+
+db.sqlite3
+
+Blog/migrations
+Blog/__pycache__
+
+Utils/migrations
+Utils/__pycache__
+
+backend/__pycache__
+
