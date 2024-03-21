@@ -111,7 +111,7 @@ nav a.router-link-exact-active {
   border-top: 1px solid #4b4d4e3f
 }
 
-nav a:hover{
+nav a:hover, nav a:focus{
   border-bottom: 2px solid #ccc;
   transition-duration: 0.1s
 }
