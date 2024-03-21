@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue'
+import ArticlesView from '../views/ArticlesView.vue'
 import PathNotFound from '../views/PathNotFound.vue'
 
 
@@ -14,6 +15,11 @@ const routes = [
     path: '/about',
     name: 'about',
     component: AboutView
+  },
+  {
+    path: '/articles',
+    name: 'articles',
+    component: ArticlesView
   },
   {
     path: '/:pathMatch(.*)*', 

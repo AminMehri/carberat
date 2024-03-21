@@ -1,60 +1,23 @@
 <template>
-  <div class="home">
+  <div dir="rtl" class="articles">
     <div class="container-fluid">
       <div class="row">
 
-        <div class="col-lg-3 col-md-4 col-sm-6 col-12 text-center shadow">
-          <div class="card">
-            <h4 class="card-title m-4 badge bg-dark bold">جدیدترین مقالات</h4>
-            <router-link to="/" class="d-flex align-items-center my-3">
-              <p class="bold text-dark article-title">بزرگترین شرکت ماشین سازی آلمان ورشکست شد</p>
-              <img src="../assets/safety.png" class="img-thumbnail w-25 " alt="" srcset="">
-            </router-link>
+				
+				<div class="col-lg-8 col-md-10 col-10 m-5 p-4">
+					<div class="border p-5 rounded">
 
-            <router-link to="/" class="d-flex align-items-center my-3">
-              <p class="bold text-dark article-title">بزرگترین شرکت ماشین سازی آلمان ورشکست شد</p>
-              <img src="../assets/safety.png" class="img-thumbnail w-25 " alt="" srcset="">
-            </router-link>
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><router-link to="/">خانه</router-link></li>
+								<span>&nbsp;/&nbsp;</span>
+								<li class="breadcrumb-item active" aria-current="page">دانشنامه</li>
+							</ol>
+						</nav>
 
-            <router-link to="/" class="d-flex align-items-center my-3">
-              <p class="bold text-dark article-title">بزرگترین شرکت ماشین سازی آلمان ورشکست شد</p>
-              <img src="../assets/safety.png" class="img-thumbnail w-25 " alt="" srcset="">
-            </router-link>
+						<h1 class="bold ">دانشنامه</h1>
 
-            <router-link to="/" class="d-flex align-items-center my-3">
-              <p class="bold text-dark article-title">بزرگترین شرکت ماشین سازی آلمان ورشکست شد</p>
-              <img src="../assets/safety.png" class="img-thumbnail w-25 " alt="" srcset="">
-            </router-link>
-
-            <router-link to="/" class="d-flex align-items-center my-3">
-              <p class="bold text-dark article-title">بزرگترین شرکت ماشین سازی آلمان ورشکست شد</p>
-              <img src="../assets/safety.png" class="img-thumbnail w-25 " alt="" srcset="">
-            </router-link>
-
-            <router-link to="/" class="d-flex align-items-center my-3">
-              <p class="bold text-dark article-title">بزرگترین شرکت ماشین سازی آلمان ورشکست شد</p>
-              <img src="../assets/safety.png" class="img-thumbnail w-25 " alt="" srcset="">
-            </router-link>
-
-            <router-link to="/" class="d-flex align-items-center my-3">
-              <p class="bold text-dark article-title">بزرگترین شرکت ماشین سازی آلمان ورشکست شد</p>
-              <img src="../assets/safety.png" class="img-thumbnail w-25 " alt="" srcset="">
-            </router-link>
-
-            <router-link to="/" class="d-flex align-items-center my-3">
-              <p class="bold text-dark article-title">بزرگترین شرکت ماشین سازی آلمان ورشکست شد</p>
-              <img src="../assets/safety.png" class="img-thumbnail w-25 " alt="" srcset="">
-            </router-link>
-
-            <router-link to="/" class="d-flex align-items-center my-3">
-              <p class="bold text-dark article-title">بزرگترین شرکت ماشین سازی آلمان ورشکست شد</p>
-              <img src="../assets/safety.png" class="img-thumbnail w-25 " alt="" srcset="">
-            </router-link>
-
-          </div>
-        </div>
-
-        <div class="col-lg-9 col-md-8 col-sm-6 col-12">
+					</div>
 
           <router-link to="/" dir="rtl" class="mb-3">
             <div class="row align-items-center category-card">
@@ -64,9 +27,9 @@
               </div>
               
               <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title badge bold bg-dark fs-4 my-3">قطعات ماشین</h5>
-                  <p class="card-text text-dark">
+                <div class="card-body text-dark">
+                  <h3 class="card-title bold my-3 ">قطعات ماشین</h3>
+                  <p class="card-text">
                     لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است،
                     چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد
                     نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته
@@ -91,9 +54,9 @@
               </div>
               
               <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title badge bold bg-dark fs-4 my-3">قطعات ماشین</h5>
-                  <p class="card-text text-dark">
+                <div class="card-body text-dark">
+                  <h3 class="card-title bold my-3 ">قطعات ماشین</h3>
+                  <p class="card-text">
                     لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است،
                     چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد
                     نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته
@@ -109,6 +72,7 @@
 
             </div>
           </router-link>
+
           <router-link to="/" dir="rtl" class="mb-3">
             <div class="row align-items-center category-card">
 
@@ -117,9 +81,9 @@
               </div>
               
               <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title badge bold bg-dark fs-4 my-3">قطعات ماشین</h5>
-                  <p class="card-text text-dark">
+                <div class="card-body text-dark">
+                  <h3 class="card-title bold my-3 ">قطعات ماشین</h3>
+                  <p class="card-text">
                     لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است،
                     چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد
                     نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته
@@ -148,9 +112,5 @@
 	box-shadow: 10px 5px 5px black;
   opacity: 0.6;
   transition-duration: 0.3s;
-}
-
-.article-title:hover, .article-title:focus {
-  text-decoration: underline;
 }
 </style>

@@ -45,11 +45,12 @@
               <router-link class="nav-link" to="/contact">ارتباط با ما</router-link>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+              <router-link class="nav-link dropdown-toggle" to="/articles" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 دانشنامه
-              </a>
-              <ul class="dropdown-menu">
+              </router-link>
+              <ul class="dropdown-menu text-end">
+                <li><router-link class="dropdown-item" to="/articles">همه مقالات</router-link></li>
                 <li><router-link class="dropdown-item" to="/as">موتور ماشین</router-link></li>
                 <li><router-link class="dropdown-item" to="/dq">بدنه ماشین</router-link></li>
                 <li><router-link class="dropdown-item" to="/dqw">یه جای دیگه ماشین</router-link></li>
