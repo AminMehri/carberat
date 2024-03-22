@@ -19,81 +19,18 @@
 
 					</div>
 
-          <router-link to="/" dir="rtl" class="mb-3">
+          <router-link v-for="art in articlesData" :to="`/article/${art.slug}`" dir="rtl" class="mb-3">
             <div class="row align-items-center category-card">
 
               <div class="col-md-4">
-                <img src="../assets/safety.png" class="img-fluid rounded-start" alt="...">
+                <img :src="`http://127.0.0.1:8000${art.thumbnail}`" class="img-fluid rounded-start" alt="...">
               </div>
               
               <div class="col-md-8">
                 <div class="card-body text-dark">
-                  <h3 class="card-title bold my-3 ">قطعات ماشین</h3>
-                  <p class="card-text">
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است،
-                    چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد
-                    نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته
-                    حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان
-                    رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید
-                    داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل
-                    حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار
-                    گیرد.
-                  </p>
-                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-              </div>
-
-            </div>
-          </router-link>
-
-          <router-link to="/" dir="rtl" class="mb-3">
-            <div class="row align-items-center category-card">
-
-              <div class="col-md-4">
-                <img src="../assets/safety.png" class="img-fluid rounded-start" alt="...">
-              </div>
-              
-              <div class="col-md-8">
-                <div class="card-body text-dark">
-                  <h3 class="card-title bold my-3 ">قطعات ماشین</h3>
-                  <p class="card-text">
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است،
-                    چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد
-                    نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته
-                    حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان
-                    رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید
-                    داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل
-                    حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار
-                    گیرد.
-                  </p>
-                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-              </div>
-
-            </div>
-          </router-link>
-
-          <router-link to="/" dir="rtl" class="mb-3">
-            <div class="row align-items-center category-card">
-
-              <div class="col-md-4">
-                <img src="../assets/safety.png" class="img-fluid rounded-start" alt="...">
-              </div>
-              
-              <div class="col-md-8">
-                <div class="card-body text-dark">
-                  <h3 class="card-title bold my-3 ">قطعات ماشین</h3>
-                  <p class="card-text">
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است،
-                    چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد
-                    نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته
-                    حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان
-                    رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید
-                    داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل
-                    حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار
-                    گیرد.
-                  </p>
-                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  <h3 class="card-title bold my-3 ">{{art.title}}</h3>
+                  <p class="card-text text-dark lh-lg" v-html="art.description"></p>
+                  <p class="card-text"><small class="text-muted">{{art.date}}</small></p>
                 </div>
               </div>
 
@@ -106,6 +43,45 @@
     </div>
   </div>
 </template>
+
+
+<script>
+import axios from 'axios'
+import { ref } from 'vue';
+import LoadingCard from '@/components/LoadingCard.vue'
+import MacLoading from '@/components/MacLoading.vue'
+
+
+export default{
+  components: {
+    LoadingCard,
+    MacLoading,
+  },
+
+  setup(){
+    let articlesData = ref([])
+    let loadingCard = ref(true)
+    let macLoading = ref(true)
+
+    axios
+      .get('blog/articles/')
+      .then(res => {
+        articlesData.value = res.data
+        loadingCard.value = false
+      })
+      .catch(error => {
+        console.log(error.response);
+        loadingCard.value = false
+      })
+    
+    return {
+      articlesData,
+      loadingCard,
+      macLoading
+    }
+  }
+}
+</script>
 
 <style scoped>
 .category-card:hover, .category-card:focus {

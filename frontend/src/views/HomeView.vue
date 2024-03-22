@@ -6,130 +6,33 @@
         <div class="col-lg-3 col-md-4 col-sm-6 col-12 text-center shadow">
           <div class="card">
             <h4 class="card-title m-4 badge bg-dark bold">جدیدترین مقالات</h4>
-            <router-link to="/" class="d-flex align-items-center my-3">
-              <p class="bold text-dark article-title">بزرگترین شرکت ماشین سازی آلمان ورشکست شد</p>
-              <img src="../assets/safety.png" class="img-thumbnail w-25 " alt="" srcset="">
-            </router-link>
 
-            <router-link to="/" class="d-flex align-items-center my-3">
-              <p class="bold text-dark article-title">بزرگترین شرکت ماشین سازی آلمان ورشکست شد</p>
-              <img src="../assets/safety.png" class="img-thumbnail w-25 " alt="" srcset="">
-            </router-link>
-
-            <router-link to="/" class="d-flex align-items-center my-3">
-              <p class="bold text-dark article-title">بزرگترین شرکت ماشین سازی آلمان ورشکست شد</p>
-              <img src="../assets/safety.png" class="img-thumbnail w-25 " alt="" srcset="">
-            </router-link>
-
-            <router-link to="/" class="d-flex align-items-center my-3">
-              <p class="bold text-dark article-title">بزرگترین شرکت ماشین سازی آلمان ورشکست شد</p>
-              <img src="../assets/safety.png" class="img-thumbnail w-25 " alt="" srcset="">
-            </router-link>
-
-            <router-link to="/" class="d-flex align-items-center my-3">
-              <p class="bold text-dark article-title">بزرگترین شرکت ماشین سازی آلمان ورشکست شد</p>
-              <img src="../assets/safety.png" class="img-thumbnail w-25 " alt="" srcset="">
-            </router-link>
-
-            <router-link to="/" class="d-flex align-items-center my-3">
-              <p class="bold text-dark article-title">بزرگترین شرکت ماشین سازی آلمان ورشکست شد</p>
-              <img src="../assets/safety.png" class="img-thumbnail w-25 " alt="" srcset="">
-            </router-link>
-
-            <router-link to="/" class="d-flex align-items-center my-3">
-              <p class="bold text-dark article-title">بزرگترین شرکت ماشین سازی آلمان ورشکست شد</p>
-              <img src="../assets/safety.png" class="img-thumbnail w-25 " alt="" srcset="">
-            </router-link>
-
-            <router-link to="/" class="d-flex align-items-center my-3">
-              <p class="bold text-dark article-title">بزرگترین شرکت ماشین سازی آلمان ورشکست شد</p>
-              <img src="../assets/safety.png" class="img-thumbnail w-25 " alt="" srcset="">
-            </router-link>
-
-            <router-link to="/" class="d-flex align-items-center my-3">
-              <p class="bold text-dark article-title">بزرگترین شرکت ماشین سازی آلمان ورشکست شد</p>
-              <img src="../assets/safety.png" class="img-thumbnail w-25 " alt="" srcset="">
+            <div v-if="macLoading"><MacLoading /></div>
+            
+            <router-link v-for="article in articlesData" :to="`/article/${article.slug}`" class="d-flex align-items-center my-3">
+              <p class="bold text-dark article-title">{{article.title}}</p>
+              <img :src="`http://127.0.0.1:8000${article.thumbnail}`" class="img-thumbnail w-25 " alt="" srcset="">
             </router-link>
 
           </div>
         </div>
 
         <div class="col-lg-9 col-md-8 col-sm-6 col-12">
-
-          <router-link to="/" dir="rtl" class="mb-3">
+          
+          <div v-if="loadingCard"><LoadingCard/></div>
+          
+          <router-link v-for="cat in categoriesData" :to="`/category/${cat.slug}`" dir="rtl" class="mb-3">
             <div class="row align-items-center category-card">
 
               <div class="col-md-4">
-                <img src="../assets/safety.png" class="img-fluid rounded-start" alt="...">
+                <img :src="`http://127.0.0.1:8000${cat.thumbnail}`" class="img-fluid rounded-start" alt="...">
               </div>
               
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title badge bold bg-dark fs-4 my-3">قطعات ماشین</h5>
-                  <p class="card-text text-dark">
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است،
-                    چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد
-                    نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته
-                    حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان
-                    رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید
-                    داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل
-                    حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار
-                    گیرد.
-                  </p>
-                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-              </div>
-
-            </div>
-          </router-link>
-
-          <router-link to="/" dir="rtl" class="mb-3">
-            <div class="row align-items-center category-card">
-
-              <div class="col-md-4">
-                <img src="../assets/safety.png" class="img-fluid rounded-start" alt="...">
-              </div>
-              
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title badge bold bg-dark fs-4 my-3">قطعات ماشین</h5>
-                  <p class="card-text text-dark">
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است،
-                    چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد
-                    نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته
-                    حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان
-                    رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید
-                    داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل
-                    حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار
-                    گیرد.
-                  </p>
-                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-              </div>
-
-            </div>
-          </router-link>
-          <router-link to="/" dir="rtl" class="mb-3">
-            <div class="row align-items-center category-card">
-
-              <div class="col-md-4">
-                <img src="../assets/safety.png" class="img-fluid rounded-start" alt="...">
-              </div>
-              
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title badge bold bg-dark fs-4 my-3">قطعات ماشین</h5>
-                  <p class="card-text text-dark">
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است،
-                    چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد
-                    نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته
-                    حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان
-                    رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید
-                    داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل
-                    حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار
-                    گیرد.
-                  </p>
-                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  <h5 class="card-title badge bold bg-dark fs-4 my-3"><span v-if=cat.parent>{{ cat.parent }} ></span> {{cat.title}}</h5>
+                  <p class="card-text text-dark lh-lg" v-html="cat.description"></p>
+                  <p class="card-text"><small class="text-muted">{{ cat.date }}</small></p>
                 </div>
               </div>
 
@@ -142,6 +45,57 @@
     </div>
   </div>
 </template>
+
+<script>
+import axios from 'axios'
+import { ref } from 'vue';
+import LoadingCard from '@/components/LoadingCard.vue'
+import MacLoading from '@/components/MacLoading.vue'
+
+
+export default{
+  components: {
+    LoadingCard,
+    MacLoading,
+  },
+
+  setup(){
+    let categoriesData = ref([])
+    let articlesData = ref([])
+    let loadingCard = ref(true)
+    let macLoading = ref(true)
+
+    axios
+      .get('blog/categories/')
+      .then(res => {
+        categoriesData.value = res.data
+        loadingCard.value = false
+      })
+      .catch(error => {
+        console.log(error.response);
+        loadingCard.value = false
+      })
+    
+    axios
+      .get('blog/articles/')
+      .then(res => {
+        articlesData.value = res.data
+        macLoading.value = false
+      })
+      .catch(error => {
+        console.log(error.response);
+        macLoading.value = false
+      })
+    
+    return {
+      categoriesData,
+      articlesData,
+      loadingCard,
+      macLoading
+    }
+  }
+}
+</script>
 
 <style scoped>
 .category-card:hover, .category-card:focus {
