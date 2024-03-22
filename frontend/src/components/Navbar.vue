@@ -52,40 +52,19 @@
               <ul class="dropdown-menu text-end main-dropdown">
                 <li><router-link class="dropdown-item" to="/articles">همه مقالات</router-link></li>
 
-                <li>
-                  <div class="accordion accordion-flush" id="accordionFlushExample">
+                <li v-for="(cat, index) in categoriesData">
+                  <div v-if="!cat.parent" class="accordion accordion-flush" id="accordionFlushExample">
                     <div class="accordion-item">
                       <h2 class="accordion-header" id="flush-headingOne">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                          data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                          ماشین سنگین
+                          :data-bs-target="`#flush-collapseOne${index}`" aria-expanded="false" aria-controls="flush-collapseOne">
+                          {{cat.title}}
                         </button>
                       </h2>
-                      <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                      <div :id="`flush-collapseOne${index}`" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
                         data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
-                            <li><router-link class="dropdown-item" to="/as">موتور ماشین</router-link></li>
-                            <li><router-link class="dropdown-item" to="/dq">بدنه ماشین</router-link></li>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-
-                <li>
-                  <div class="accordion accordion-flush" id="accordionFlushExample">
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="flush-headingOne">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                          data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                          ماشین سنگین
-                        </button>
-                      </h2>
-                      <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
-                        data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">
-                            <li><router-link class="dropdown-item" to="/as">موتور ماشین</router-link></li>
-                            <li><router-link class="dropdown-item" to="/dq">بدنه ماشین</router-link></li>
+                          <li v-for="c in cat.children"><router-link class="dropdown-item" :to="`/category/${c[1]}`">{{c[0]}}</router-link></li>
                         </div>
                       </div>
                     </div>
@@ -114,6 +93,7 @@ import { ref } from 'vue'
 
 export default {
   setup() {
+    let categoriesData = ref()
     let darkMode = ref(true)
     function changeMode() {
       if (darkMode.value == true) {
@@ -127,8 +107,19 @@ export default {
       darkMode.value = !darkMode.value
     }
 
+    axios
+      .get('blog/categories/')
+      .then(res => {
+        categoriesData.value = res.data
+        console.log(categoriesData.value);
+      })
+      .catch(error => {
+        console.log(error.response);
+      })
+
     return {
       darkMode,
+      categoriesData,
       changeMode,
     }
   }

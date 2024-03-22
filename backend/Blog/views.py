@@ -76,6 +76,7 @@ class ShowCategories(APIView):
                 'title': category.title,
                 'slug': category.slug,
                 'parent': category.parent.title if category.parent else None,
+                'children': [[a.title, a.slug] for a in category.children.all()],
                 'description': category.description,
                 'thumbnail': category.thumbnail.url,
                 'date': datetime2jalali(category.date).strftime('14%y/%m/%d _ %H:%M'),
