@@ -9,4 +9,5 @@ urlpatterns = [
     path('categories/', views.ShowCategories.as_view()),
     path('category/', views.ShowSingleCategory.as_view()),
     path('contact/', views.Contact.as_view()),
+    path('search/', views.Search.as_view()),
 ]

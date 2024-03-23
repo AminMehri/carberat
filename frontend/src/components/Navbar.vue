@@ -6,9 +6,26 @@
         کاربرات
       </router-link>
 
-      <form class="d-flex w-50" role="search">
-        <input class="form-control me-2" type="search" placeholder="جستجو ..." aria-label="Search">
+      <form class="d-flex position-relative" role="search" id="search-form">
+        
+        <input v-model="titleSearch" class="form-control me-2" type="search" placeholder="جستجو ...">
+        
+        <div class="position-absolute shadow border bg-light rounded w-100" id="search-box">
+          <div>
+            <div class="row border border-bottom">
+
+              <router-link v-for="a in searchRes" :to=a.slug target="_blank"
+                class="bg-secondary d-block p-3 hover-search-result">
+                <span class="ms-2 fw-bold text-white thin">{{ a.title }}</span>
+                <span class="badge bg-danger">{{ a.badge }}</span>
+              </router-link>
+
+            </div>
+          </div>
+        </div>
       </form>
+
+
 
       <div>
         <i v-if="!darkMode" @click="changeMode" type="button" class="fas fa-sun text-light fs-4"></i>
@@ -57,29 +74,31 @@
                     <div class="accordion-item">
                       <h2 class="accordion-header" id="flush-headingOne">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                          :data-bs-target="`#flush-collapseOne${index}`" aria-expanded="false" aria-controls="flush-collapseOne">
-                          {{cat.title}}
+                          :data-bs-target="`#flush-collapseOne${index}`" aria-expanded="false"
+                          aria-controls="flush-collapseOne">
+                          {{ cat.title }}
                         </button>
                       </h2>
-                      <div :id="`flush-collapseOne${index}`" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
-                        data-bs-parent="#accordionFlushExample">
+                      <div :id="`flush-collapseOne${index}`" class="accordion-collapse collapse"
+                        aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
-                          <li v-for="c in cat.children"><router-link class="dropdown-item" :to="`/category/${c[1]}`">{{c[0]}}</router-link></li>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-
-              </ul>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" to="/">خانه</router-link>
-            </li>
-          </ul>
+                <li v-for="c in cat.children"><router-link class="dropdown-item" :to="`/category/${c[1]}`">{{ c[0]
+                    }}</router-link></li>
         </div>
-
       </div>
+    </div>
+    </div>
+    </li>
+
+    </ul>
+    </li>
+    <li class="nav-item">
+      <router-link class="nav-link" to="/">خانه</router-link>
+    </li>
+    </ul>
+    </div>
+
+    </div>
     </div>
   </nav>
 
@@ -89,7 +108,7 @@
 <script>
 import Swal from 'sweetalert2'
 import axios from 'axios'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
 export default {
   setup() {
@@ -117,9 +136,44 @@ export default {
         console.log(error.response);
       })
 
+    let titleSearch = ref('')
+    let searchRes = ref()
+    // let searchLoading = ref(false)
+
+    let numbersSearch = 0
+
+    watch([titleSearch], () => {
+      numbersSearch += 1
+      let currentNum = numbersSearch
+
+      setTimeout(() => {
+
+        if (currentNum == numbersSearch && titleSearch.value.length > 2) {
+          // searchLoading.value = true
+          searchRes.value = []
+          axios
+            .post('blog/search/', {
+              'slug': titleSearch.value
+            })
+            .then(response => {
+              searchRes.value = response.data
+              // searchLoading.value = false
+            })
+            .catch(error => {
+              // searchLoading.value = false
+              console.log(error.response);
+            })
+        } else {
+          searchRes.value = []
+        }
+      }, 1000)
+    })
+
     return {
       darkMode,
       categoriesData,
+      titleSearch,
+      searchRes,
       changeMode,
     }
   }
@@ -128,8 +182,8 @@ export default {
 
 <style scoped>
 .dropdown:hover .dropdown-menu {
-    display: block;
-    margin-top: 0;
+  display: block;
+  margin-top: 0;
 }
 
 nav a {
@@ -152,4 +206,20 @@ nav a:focus {
     direction: rtl;
   }
 }
+
+#search-form{
+  width: 50%;
+  min-width: 300px;
+}
+
+#search-box{
+  z-index: 1;
+  top: 38px
+}
+
+.hover-search-result:hover{
+    background-color: rgb(72, 76, 77) !important;
+    transition-duration: 0.3s;
+}
+
 </style>

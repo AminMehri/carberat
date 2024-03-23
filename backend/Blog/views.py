@@ -4,6 +4,8 @@ from rest_framework.response import Response
 from jalali_date import datetime2jalali
 from Blog.models import Article, Category, ContactUs
 from Blog import serializers
+from django.db.models import Q
+
 
 
 class ShowArticles(APIView):
@@ -119,3 +121,27 @@ class Contact(APIView):
         ContactUs.objects.create(full_name=full_name, email=email,subject=subject,  content=content)
 
         return Response({'status': 'OK'}, status=status.HTTP_200_OK)
+
+
+
+class Search(APIView):
+    def post(self, request):
+
+        serializer = serializers.SlugSerializer(data=request.data)
+        if serializer.is_valid():
+            query_search = serializer.data.get('slug')
+            
+        else:
+            return Response({'status': 'Bad Request'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        results = Article.objects.filter(Q(title__icontains=query_search))[:3]
+
+        data = []
+        for article in results:
+            data.append({
+                'title': article.title,
+                'slug': '/article/{}'.format(article.slug),
+                'badge': 'مقاله',
+            })
+        
+        return Response(data, status=status.HTTP_200_OK)
