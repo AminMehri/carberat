@@ -5,7 +5,7 @@ import ArticlesView from '../views/ArticlesView.vue'
 import SingleArticleView from '../views/SingleArticleView.vue'
 import SingleCategoryView from '../views/SingleCategoryView.vue'
 import PathNotFound from '../views/PathNotFound.vue'
-
+import ContactView from '../views/ContactView.vue'
 
 const routes = [
   {
@@ -32,6 +32,11 @@ const routes = [
     path: '/category/:slug',
     name: 'single-category',
     component: SingleCategoryView
+  },
+  {
+    path: '/contact',
+    name: 'contact',
+    component: ContactView
   },
   {
     path: '/:pathMatch(.*)*', 

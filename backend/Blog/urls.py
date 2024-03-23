@@ -8,4 +8,5 @@ urlpatterns = [
     path('article/', views.ShowSingleArticle.as_view()),
     path('categories/', views.ShowCategories.as_view()),
     path('category/', views.ShowSingleCategory.as_view()),
+    path('contact/', views.Contact.as_view()),
 ]

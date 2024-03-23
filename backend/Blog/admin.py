@@ -1,5 +1,5 @@
 from django.contrib import admin
-from Blog.models import Article, Category
+from Blog.models import Article, Category, ContactUs
 
 
 
@@ -18,3 +18,9 @@ class ArticleAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'parent','date', 'status')
     search_fields = ['title', 'slug']
+
+
+@admin.register(ContactUs)
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ('full_name', 'email', 'subject', 'seen')
+    search_fields = ['full_name', 'subject']
