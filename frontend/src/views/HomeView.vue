@@ -17,27 +17,29 @@
           </div>
         </div>
 
-        <div class="col-lg-9 col-md-8 col-sm-6 col-12">
+        <div class="col-lg-9 col-md-8 col-sm-6 col-12 p-lg-4 p-md-3 p-sm-2">
           
-          <div v-if="loadingCard"><LoadingCard/></div>
-          
-          <router-link v-for="cat in categoriesData" :to="`/category/${cat.slug}`" dir="rtl" class="mb-3">
-            <div class="row align-items-center category-card">
+          <div class="border p-lg-4 p-md-3 p-sm-2 rounded">
+            <div v-if="loadingCard"><LoadingCard/></div>
+            
+            <router-link v-for="cat in categoriesData" :to="`/category/${cat.slug}`" dir="rtl" class="mb-3">
+              <div class="row align-items-center category-card">
 
-              <div class="col-md-4">
-                <img :src="`http://127.0.0.1:8000${cat.thumbnail}`" class="img-fluid rounded-start" alt="...">
-              </div>
-              
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title badge bold bg-dark fs-4 my-3"><span v-if=cat.parent>{{ cat.parent }} ></span> {{cat.title}}</h5>
-                  <p class="card-text text-dark lh-lg" v-html="cat.description"></p>
-                  <p class="card-text"><small class="text-muted">{{ cat.date }}</small></p>
+                <div class="col-md-4">
+                  <img :src="`http://127.0.0.1:8000${cat.thumbnail}`" class="img-fluid rounded-start" alt="...">
                 </div>
-              </div>
+                
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title badge bold bg-dark fs-4 my-3"><span v-if=cat.parent>{{ cat.parent }} ></span> {{cat.title}}</h5>
+                    <p class="card-text text-dark lh-lg" v-html="cat.description"></p>
+                    <p class="card-text"><small class="text-muted">{{ cat.date }}</small></p>
+                  </div>
+                </div>
 
-            </div>
-          </router-link>
+              </div>
+            </router-link>
+          </div>
 
         </div>
 
