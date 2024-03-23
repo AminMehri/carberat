@@ -25,14 +25,14 @@
 
 							<div class="col-md-6">
 								<div class="form-floating mb-3">
-									<input v-model="fullName" type="name" class="form-control" id="nameInput" placeholder="example">
+									<input v-model="fullName" type="name" class="form-control form-control-cantact" id="nameInput" placeholder="example">
 									<label for="nameInput">نام و نام خانوادگی</label>
 								</div>
 							</div>
 
 							<div class="col-md-6">
 								<div class="form-floating mb-3">
-									<input v-model="email" type="email" class="form-control" id="emailInput"
+									<input v-model="email" type="email" class="form-control form-control-cantact" id="emailInput"
 										placeholder="name@example.com">
 									<label for="emailInput">ایمیل</label>
 								</div>
@@ -43,7 +43,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-floating mb-3">
-									<input v-model="subject" type="text" class="form-control" id="subjectInput" placeholder="example">
+									<input v-model="subject" type="text" class="form-control form-control-cantact" id="subjectInput" placeholder="example">
 									<label for="subjectInput">موضوع</label>
 								</div>
 							</div>
@@ -54,7 +54,7 @@
 							<div class="col-md-12">
 
 								<div class="form-floating mb-3">
-									<textarea v-model="content" class="form-control" placeholder="Leave a message here" id="textareaInput"
+									<textarea v-model="content" class="form-control form-control-cantact" placeholder="Leave a message here" id="textareaInput"
 										style="height: 100px"></textarea>
 									<label for="textareaInput">پیام</label>
 								</div>

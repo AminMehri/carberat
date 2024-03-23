@@ -5,7 +5,7 @@
 
 				<div class="col-lg-3 col-md-4 col-sm-6 col-12 text-center shadow">
 					<div class="card">
-						<h4 class="card-title m-4 badge bg-dark bold">جدیدترین مقالات این دسته بندی</h4>
+						<h4 class="card-title m-4 badge bold">جدیدترین مقالات این دسته بندی</h4>
 
 						<div v-if="macLoading">
 							<MacLoading />
@@ -13,7 +13,7 @@
 
 						<router-link v-for="article in articlesData" :to="`/article/${article.slug}`"
 							class="d-flex align-items-center my-3">
-							<p class="bold text-dark article-title">{{ article.title }}</p>
+							<p class="bold  article-title">{{ article.title }}</p>
 							<img :src="`http://127.0.0.1:8000${article.thumbnail}`" class="img-thumbnail w-25 " alt="" srcset="">
 						</router-link>
 
@@ -39,7 +39,7 @@
 
 						<h1 class="bold">{{ cat.title }}</h1>
 						<hr class="w-50 ms-auto">
-						<p class="text-dark lh-lg" v-html="cat.content"></p>
+						<p class=" lh-lg" v-html="cat.content"></p>
 					</div>
 
 				</div>

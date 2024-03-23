@@ -11,7 +11,7 @@
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><router-link to="/">خانه</router-link></li>
 								<span>&nbsp;/&nbsp;</span>
-								<li class="breadcrumb-item active" aria-current="page">دانشنامه</li>
+								<li class="breadcrumb-item" aria-current="page">دانشنامه</li>
 							</ol>
 						</nav>
 
@@ -27,10 +27,10 @@
               </div>
               
               <div class="col-md-8">
-                <div class="card-body text-dark">
-                  <h3 class="card-title bold my-3 ">{{art.title}}</h3>
-                  <p class="card-text text-dark lh-lg" v-html="art.description"></p>
-                  <p class="card-text"><small class="text-muted">{{art.date}}</small></p>
+                <div class="card-body">
+                  <h3 class="card-title bold my-3 p-2 rounded">{{art.title}}</h3>
+                  <p class="card-text lh-lg" v-html="art.description"></p>
+                  <p class="card-text"><small class="text-muted-date">{{art.date}}</small></p>
                 </div>
               </div>
 
