@@ -6,6 +6,8 @@ media/
 
 db.sqlite3
 
+.env
+
 Blog/migrations
 Blog/__pycache__
 
