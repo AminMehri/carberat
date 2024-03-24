@@ -44,6 +44,17 @@
 						<h1 class="bold">{{ art.title }}</h1>
 						<hr class="w-50 ms-auto">
 						<p class="lh-lg" v-html="art.content"></p>
+
+            <div class="border p-4">
+              <p class="my-0">:اشتراک گذاری در</p>
+              <a :href="`https://t.me/share/url?url=https://carberat.com/article/${slug}&text=${art.title}`" target="_blank">
+                <i class="fab fa-telegram fs-2"></i>
+              </a>
+
+              <a :href="`http://twitter.com/share?text=${art.title}&url=https://carberat.com/article/${slug}`" target="_blank">
+                <i class="fab fa-twitter fs-2 mx-2"></i>
+              </a>
+            </div>
 					</div>
 
 				</div>
@@ -119,7 +130,8 @@ export default {
 			articlesData,
 			getArticleData,
 			loadingCard,
-			macLoading
+			macLoading,
+      slug
 		}
 	}
 }
