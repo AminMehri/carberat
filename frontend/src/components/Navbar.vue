@@ -14,6 +14,11 @@
           <div>
             <div class="row border border-bottom">
 
+              <div class="bg-secondary d-block p-3" v-if="searchRes.length==0 && titleSearch.length!=0">
+                <p>چیزی برای نمایش وجود ندارد</p>
+              </div>
+
+
               <router-link v-for="a in searchRes" :to=a.slug target="_blank"
                 class="bg-secondary d-block p-3 hover-search-result">
                 <span class="ms-2 fw-bold thin text-white">{{ a.title }}</span>
@@ -37,7 +42,7 @@
 
   <nav class="navbar navbar-expand-lg shadow" id="nav">
     <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+      <button class="navbar-toggler bg-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
         aria-controls="offcanvasNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -51,7 +56,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-5">
             <li class="nav-item">
               <router-link class="nav-link" to="/guide">راهنما</router-link>
             </li>
@@ -82,23 +87,25 @@
                       <div :id="`flush-collapseOne${index}`" class="accordion-collapse collapse"
                         aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
-                <li v-for="c in cat.children"><router-link class="dropdown-item text-dark" :to="`/category/${c[1]}`">{{ c[0]
-                    }}</router-link></li>
+                          <li>
+                            <router-link class="dropdown-item text-dark" :to="`/category/${cat.slug}`">مقالات</router-link>
+                          </li>
+                          <li v-for="c in cat.children">
+                            <router-link class="dropdown-item text-dark" :to="`/category/${c[1]}`">{{c[0]}}</router-link>
+                          </li>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/">خانه</router-link>
+            </li>
+          </ul>
         </div>
       </div>
-    </div>
-    </div>
-    </li>
-
-    </ul>
-    </li>
-    <li class="nav-item">
-      <router-link class="nav-link" to="/">خانه</router-link>
-    </li>
-    </ul>
-    </div>
-
-    </div>
     </div>
   </nav>
 
@@ -109,8 +116,14 @@
 import Swal from 'sweetalert2'
 import axios from 'axios'
 import { ref, watch } from 'vue'
+import MacLoading from '@/components/MacLoading.vue'
+
 
 export default {
+  components: {
+    MacLoading,
+  },
+
   setup() {
     let categoriesData = ref()
     let darkMode = ref(true)
@@ -130,8 +143,8 @@ export default {
       })
 
     let titleSearch = ref('')
-    let searchRes = ref()
-    // let searchLoading = ref(false)
+    let searchRes = ref([])
+    let searchLoading = ref(false)
 
     let numbersSearch = 0
 
@@ -142,7 +155,7 @@ export default {
       setTimeout(() => {
 
         if (currentNum == numbersSearch && titleSearch.value.length > 2) {
-          // searchLoading.value = true
+          searchLoading.value = true
           searchRes.value = []
           axios
             .post('blog/search/', {
@@ -150,10 +163,10 @@ export default {
             })
             .then(response => {
               searchRes.value = response.data
-              // searchLoading.value = false
+              searchLoading.value = false
             })
             .catch(error => {
-              // searchLoading.value = false
+              searchLoading.value = false
               console.log(error.response);
             })
         } else {
@@ -167,6 +180,7 @@ export default {
       categoriesData,
       titleSearch,
       searchRes,
+      searchLoading,
       changeMode,
     }
   }
@@ -236,19 +250,32 @@ nav a:focus {
 }
 
 /* dark mode */
-body, .footer, .navbar, .card, .form-control-cantact {
+body,
+.footer,
+.navbar,
+.card,
+.form-control-cantact,
+.offcanvas {
   background-color: var(--body-color) !important;
   color: var(--font-color) !important;
 }
-.card-text, .card-title, nav a, .navbar-brand, .text-muted-date, .article-title{
+
+.card-text,
+.card-title,
+nav a,
+.navbar-brand,
+.text-muted-date,
+.article-title {
   color: var(--font-color) !important;
 }
-.card-title{
-  background-color: var(--font-color) !important; 
+
+.card-title {
+  background-color: var(--font-color) !important;
   color: var(--body-color) !important;
 }
 
-.footer, .navbar{
+.footer,
+.navbar {
   background-color: var(--body-color-2) !important;
   color: var(--font-color) !important;
 }

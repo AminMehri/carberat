@@ -31,9 +31,9 @@
                 
                 <div class="col-md-8">
                   <div class="card-body">
-                    <h5 class="card-title badge bold fs-4 my-3"><span v-if=cat.parent>{{ cat.parent }} ></span> {{cat.title}}</h5>
+                    <h5 class="card-title badge bold fs-4 my-3">{{cat.title}}</h5>
+                    <p class="mt-0 thin" v-if=cat.parent>زیر مجموعه‌ {{ cat.parent }}</p>
                     <p class="card-text lh-lg" v-html="cat.description"></p>
-                    <p class="card-text"><small class="text-muted-date">{{ cat.date }}</small></p>
                   </div>
                 </div>
 
