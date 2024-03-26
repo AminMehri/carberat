@@ -15,6 +15,10 @@ class Category(BaseBlog):
 class Article(BaseBlog):
     category = models.ManyToManyField(Category)
     thumbnail =  models.ImageField(upload_to='media/article')
+    main_page_show = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['-updated']
 
 
 

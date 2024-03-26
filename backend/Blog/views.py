@@ -11,23 +11,22 @@ from django.db.models import Q
 class ShowArticles(APIView):
 
     def get(self, request):
-        slug = self.request.query_params.get('slug')
-        if slug:
-            articles = Article.objects.published().filter(category__slug=slug).order_by('-date')
-        else:
-            articles = Article.objects.published().order_by('-date')
-        data = []
-        for article in articles:
-            data.append({
-                'id': article.id,
-                'title': article.title,
-                'slug': article.slug,
-                'category': [a.title for a in article.category.published()],
-                'description': article.description,
-                'thumbnail': article.thumbnail.url,
-                'date': datetime2jalali(article.date).strftime('14%y/%m/%d _ %H:%M'),
-            })
-        return Response(data, status=status.HTTP_200_OK)
+        try:
+            last_show = int(request.query_params.get("lastShow"))
+            articles = Article.objects.published()[last_show: last_show+10]
+            data = []
+            for article in articles:
+                data.append({
+                    'title': article.title,
+                    'slug': article.slug,
+                    'category': [a.title for a in article.category.published()],
+                    'description': article.description,
+                    'thumbnail': article.thumbnail.url,
+                    'updated': datetime2jalali(article.date).strftime('14%y/%m/%d _ %H:%M'),
+                })
+            return Response(data, status=status.HTTP_200_OK)
+        except:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 
@@ -35,19 +34,31 @@ class ShowSpecificArticles(APIView):
 
     def get(self, request):
         slug = self.request.query_params.get('slug')
-        articles = Article.objects.published().filter(category__slug=slug).order_by('-date')
+        articles = Article.objects.published().filter(category__slug=slug)[:10]
         data = []
         for article in articles:
             data.append({
-                'id': article.id,
                 'title': article.title,
                 'slug': article.slug,
-                'category': [a.title for a in article.category.published()],
-                'description': article.description,
                 'thumbnail': article.thumbnail.url,
-                'date': datetime2jalali(article.date).strftime('14%y/%m/%d _ %H:%M'),
             })
         return Response(data, status=status.HTTP_200_OK)
+
+
+
+class ShowMainArticles(APIView):
+    def get(self, request):
+
+        articles = Article.objects.published().filter(main_page_show=True)
+        data = []
+        for article in articles:
+            data.append({
+                'title': article.title,
+                'slug': article.slug,
+                'thumbnail': article.thumbnail.url,
+            })
+        return Response(data, status=status.HTTP_200_OK)
+
 
 
 class ShowSingleArticle(APIView):
@@ -59,9 +70,10 @@ class ShowSingleArticle(APIView):
         article = Article.objects.published().get(slug=slug)
         data = [{
             'title': article.title,
+            'eng_title': article.eng_title,
             'content': article.content,
             'category': [[a.title, a.slug] for a in article.category.published()],
-            'date': datetime2jalali(article.date).strftime('14%y/%m/%d _ %H:%M'),
+            'updated': datetime2jalali(article.date).strftime('14%y/%m/%d _ %H:%M'),
         }]
         return Response(data, status=status.HTTP_200_OK)
 
@@ -70,11 +82,10 @@ class ShowSingleArticle(APIView):
 class ShowCategories(APIView):
 
     def get(self, request):
-        categories = Category.objects.published().order_by('-date')
+        categories = Category.objects.published()
         data = []
         for category in categories:
             data.append({
-                'id': category.id,
                 'title': category.title,
                 'slug': category.slug,
                 'parent': category.parent.title if category.parent else None,
@@ -134,7 +145,7 @@ class Search(APIView):
         else:
             return Response({'status': 'Bad Request'}, status=status.HTTP_400_BAD_REQUEST)
         
-        results = Article.objects.filter(Q(title__icontains=query_search))[:3]
+        results = Article.objects.filter(Q(title__icontains=query_search) | Q(key_words__icontains=query_search))[:3]
 
         data = []
         for article in results:
