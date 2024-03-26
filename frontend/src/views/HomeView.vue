@@ -9,9 +9,9 @@
 
             <div v-if="macLoading"><MacLoading /></div>
             
-            <router-link v-for="article in articlesData" :to="`/article/${article.slug}`" class="d-flex align-items-center my-3">
-              <p class="bold article-title">{{article.title}}</p>
-              <img :src="`http://127.0.0.1:8000${article.thumbnail}`" class="img-thumbnail w-25 " alt="" srcset="">
+            <router-link v-for="article in articlesData" :to="`/article/${article.slug}`" class="d-flex align-items-center my-3 p-1">
+              <p class="bold article-title p-2">{{article.title}}</p>
+              <img :src="`http://127.0.0.1:8000${article.thumbnail}`" class="img-thumbnail" alt="" srcset="">
             </router-link>
 
           </div>
@@ -25,11 +25,11 @@
             <router-link v-for="cat in categoriesData" :to="`/category/${cat.slug}`" dir="rtl" class="mb-3">
               <div class="row align-items-center category-card">
 
-                <div class="col-md-4">
+                <div class="col-lg-4">
                   <img :src="`http://127.0.0.1:8000${cat.thumbnail}`" class="img-fluid rounded-start" alt="...">
                 </div>
                 
-                <div class="col-md-8">
+                <div class="col-lg-8">
                   <div class="card-body">
                     <h5 class="card-title badge bold fs-4 my-3">{{cat.title}}</h5>
                     <p class="mt-0 thin" v-if=cat.parent>زیر مجموعه‌ {{ cat.parent }}</p>
@@ -108,5 +108,11 @@ export default{
 
 .article-title:hover, .article-title:focus {
   text-decoration: underline;
+}
+
+.img-thumbnail{
+  width: 33%;
+  height: auto;
+  min-width: 75px
 }
 </style>

@@ -12,9 +12,9 @@
 						</div>
 
 						<router-link v-for="article in articlesData" :to="`/article/${article.slug}`"
-							class="d-flex align-items-center my-3">
-							<p class="bold  article-title">{{ article.title }}</p>
-							<img :src="`http://127.0.0.1:8000${article.thumbnail}`" class="img-thumbnail w-25 " alt="" srcset="">
+							class="d-flex align-items-center my-3 p-1">
+							<p class="bold  article-title p-2">{{ article.title }}</p>
+							<img :src="`http://127.0.0.1:8000${article.thumbnail}`" class="img-thumbnail" alt="" srcset="">
 						</router-link>
 
 					</div>
@@ -51,7 +51,7 @@
 
 <script>
 import axios from 'axios'
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import LoadingCard from '@/components/LoadingCard.vue'
 import MacLoading from '@/components/MacLoading.vue'
 import { useRoute } from 'vue-router'
@@ -72,20 +72,23 @@ export default {
 		let loadingCard = ref(true)
 		let macLoading = ref(true)
 
-    axios
-      .get('blog/category/', {
-        params: {
-          slug: route.params.slug
-        }
-      })
-      .then(res => {
-        singleCategoryData.value = res.data
-        loadingCard.value = false
-      })
-      .catch(error => {
-        console.log(error.response);
-        loadingCard.value = false
-      })
+		function getCatData() {
+			axios
+				.get('blog/category/', {
+					params: {
+					slug: route.params.slug
+					}
+				})
+				.then(res => {
+					singleCategoryData.value = res.data
+					loadingCard.value = false
+				})
+				.catch(error => {
+					console.log(error.response);
+					loadingCard.value = false
+				})
+		}
+		getCatData()
 		
 		axios
 			.get('blog/articles/', {
@@ -106,9 +109,17 @@ export default {
 			singleCategoryData,
 			articlesData,
 			loadingCard,
-			macLoading
+			macLoading,
+			getCatData
 		}
-	}
+	},
+
+	watch:{
+    	$route(){
+			this.getCatData()
+		}
+	} 
+
 }
 </script>
 
@@ -123,5 +134,11 @@ export default {
 .article-title:hover,
 .article-title:focus {
 	text-decoration: underline;
+}
+
+.img-thumbnail{
+  width: 33%;
+  height: auto;
+  min-width: 75px
 }
 </style>

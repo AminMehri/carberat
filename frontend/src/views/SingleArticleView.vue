@@ -12,9 +12,9 @@
 						</div>
 
 						<router-link v-for="article in articlesData" @click="getArticleData(article.slug)" :to="`/article/${article.slug}`"
-							class="d-flex align-items-center my-3">
-							<p class="bold article-title">{{ article.title }}</p>
-							<img :src="`http://127.0.0.1:8000${article.thumbnail}`" class="img-thumbnail w-25 " alt="" srcset="">
+							class="d-flex align-items-center my-3 p-1">
+							<p class="bold article-title p-2">{{ article.title }}</p>
+							<img :src="`http://127.0.0.1:8000${article.thumbnail}`" class="img-thumbnail" alt="" srcset="">
 						</router-link>
 
 					</div>
@@ -148,5 +148,11 @@ export default {
 .article-title:hover,
 .article-title:focus {
 	text-decoration: underline;
+}
+
+.img-thumbnail{
+  width: 33%;
+  height: auto;
+  min-width: 75px
 }
 </style>

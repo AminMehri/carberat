@@ -33,8 +33,7 @@
 
 
       <div>
-        <i v-if="!darkMode" @click="changeMode" type="button" class="fas fa-sun fs-4"></i>
-        <i v-if="darkMode" @click="changeMode" type="button" class="fa fa-moon fs-4"></i>
+        <i @click="changeMode" type="button" :class="(darkMode)?'fas fa-moon fs-4':'fas fa-sun fs-4'"></i>
       </div>
 
     </div>
@@ -136,7 +135,6 @@ export default {
       .get('blog/categories/')
       .then(res => {
         categoriesData.value = res.data
-        console.log(categoriesData.value);
       })
       .catch(error => {
         console.log(error.response);
@@ -247,6 +245,10 @@ nav a:focus {
 .hover-search-result:hover {
   background-color: rgb(72, 76, 77) !important;
   transition-duration: 0.3s;
+}
+
+.offcanvas {
+  width: 280px !important;
 }
 
 /* dark mode */

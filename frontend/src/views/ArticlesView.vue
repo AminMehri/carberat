@@ -22,11 +22,11 @@
           <router-link v-for="art in articlesData" :to="`/article/${art.slug}`" dir="rtl" class="mb-3">
             <div class="row align-items-center category-card">
 
-              <div class="col-md-4">
+              <div class="col-lg-4">
                 <img :src="`http://127.0.0.1:8000${art.thumbnail}`" class="img-fluid rounded-start" alt="...">
               </div>
               
-              <div class="col-md-8">
+              <div class="col-lg-8">
                 <div class="card-body">
                   <h3 class="card-title bold my-3 p-2 rounded">{{art.title}}</h3>
                   <p class="card-text lh-lg" v-html="art.description"></p>
