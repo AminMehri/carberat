@@ -79,7 +79,7 @@ export default{
       })
     
     axios
-      .get('blog/articles/')
+      .get('blog/main-articles/')
       .then(res => {
         articlesData.value = res.data
         macLoading.value = false

@@ -1,9 +1,9 @@
 <template>
 	<div class="category">
 		<div class="container-fluid">
-			<div class="row">
+			<div class="row justify-content-center">
 
-				<div class="col-lg-3 col-md-4 col-sm-6 col-12 text-center shadow">
+				<div class="col-lg-3 col-md-4 col-sm-6 col-12 text-center shadow sidebar">
 					<div class="card">
 						<h4 class="card-title m-4 badge bold">جدیدترین مقالات این دسته بندی</h4>
 
@@ -14,7 +14,8 @@
 						<router-link v-for="article in articlesData" :to="`/article/${article.slug}`"
 							class="d-flex align-items-center my-3 p-1">
 							<p class="bold  article-title p-2">{{ article.title }}</p>
-							<img :src="`http://127.0.0.1:8000${article.thumbnail}`" class="img-thumbnail" alt="" srcset="">
+							<img :src="`http://127.0.0.1:8000${article.thumbnail}`" class="img-thumbnail" alt=""
+								srcset="">
 						</router-link>
 
 					</div>
@@ -24,7 +25,8 @@
 					<div v-if="loadingCard">
 						<LoadingCard />
 					</div>
-					<div v-if="!loadingCard" v-for="cat in singleCategoryData" class="border p-lg-5 p-md-4 p-sm-3 p-2 text-end">
+					<div v-if="!loadingCard" v-for="cat in singleCategoryData"
+						class="border p-lg-5 p-md-4 p-sm-3 p-2 text-end">
 
 
 						<nav dir="rtl" aria-label="breadcrumb">
@@ -76,7 +78,7 @@ export default {
 			axios
 				.get('blog/category/', {
 					params: {
-					slug: route.params.slug
+						slug: route.params.slug
 					}
 				})
 				.then(res => {
@@ -89,13 +91,13 @@ export default {
 				})
 		}
 		getCatData()
-		
+
 		axios
-			.get('blog/articles/', {
-        params: {
-          slug: route.params.slug
-        }
-      })
+			.get('blog/specific-articles/', {
+				params: {
+					slug: route.params.slug
+				}
+			})
 			.then(res => {
 				articlesData.value = res.data
 				macLoading.value = false
@@ -114,11 +116,11 @@ export default {
 		}
 	},
 
-	watch:{
-    	$route(){
+	watch: {
+		$route() {
 			this.getCatData()
 		}
-	} 
+	}
 
 }
 </script>
@@ -136,9 +138,15 @@ export default {
 	text-decoration: underline;
 }
 
-.img-thumbnail{
-  width: 33%;
-  height: auto;
-  min-width: 75px
+.img-thumbnail {
+	width: 33%;
+	height: auto;
+	min-width: 75px
+}
+
+@media screen and (max-width: 767px) {
+	.sidebar {
+		min-width: 300px;
+	}	
 }
 </style>

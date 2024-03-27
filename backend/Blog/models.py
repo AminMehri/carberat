@@ -8,7 +8,7 @@ class Category(BaseBlog):
     thumbnail =  models.ImageField(upload_to='media/category')
 
     class Meta:
-        ordering = ['parent__id']
+        ordering = ['-parent__id']
 
 
 

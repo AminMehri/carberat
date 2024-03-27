@@ -1,9 +1,9 @@
 <template>
 	<div class="home">
 		<div class="container-fluid">
-			<div class="row">
+			<div class="row justify-content-center">
 
-				<div class="col-lg-3 col-md-4 col-sm-6 col-12 text-center shadow">
+				<div class="col-lg-3 col-md-4 col-6 text-center shadow sidebar">
 					<div class="card">
 						<h4 class="card-title m-4 badge bold">جدیدترین مقالات</h4>
 
@@ -11,10 +11,11 @@
 							<MacLoading />
 						</div>
 
-						<router-link v-for="article in articlesData" @click="getArticleData(article.slug)" :to="`/article/${article.slug}`"
-							class="d-flex align-items-center my-3 p-1">
+						<router-link v-for="article in articlesData" @click="getArticleData(article.slug)"
+							:to="`/article/${article.slug}`" class="d-flex align-items-center my-3 p-1">
 							<p class="bold article-title p-2">{{ article.title }}</p>
-							<img :src="`http://127.0.0.1:8000${article.thumbnail}`" class="img-thumbnail" alt="" srcset="">
+							<img :src="`http://127.0.0.1:8000${article.thumbnail}`" class="img-thumbnail" alt=""
+								srcset="">
 						</router-link>
 
 					</div>
@@ -24,7 +25,8 @@
 					<div v-if="loadingCard">
 						<LoadingCard />
 					</div>
-					<div v-if="!loadingCard" v-for="art in singleArticleData" class="border p-lg-5 p-md-4 p-sm-3 p-2 text-end">
+					<div v-if="!loadingCard" v-for="art in singleArticleData"
+						class="border p-lg-5 p-md-4 p-sm-3 p-2 text-end">
 
 
 						<nav dir="rtl" aria-label="breadcrumb">
@@ -34,27 +36,31 @@
 								<li class="breadcrumb-item"><router-link to="/articles">دانشنامه</router-link></li>
 								<span>&nbsp;/&nbsp;</span>
 								<div v-for="cat in art.category">
-									<li class="breadcrumb-item"><router-link
-											:to="`/category/${cat[1]}`">{{ cat[0] }}</router-link>&nbsp;/&nbsp;</li>
+									<li class="breadcrumb-item"><router-link :to="`/category/${cat[1]}`">{{ cat[0]
+											}}</router-link>&nbsp;/&nbsp;</li>
 								</div>
 								<li class="breadcrumb-item">{{ art.title }}</li>
 							</ol>
 						</nav>
 
 						<h1 class="bold">{{ art.title }}</h1>
+						<h5>{{ art.eng_title }}</h5>
 						<hr class="w-50 ms-auto">
 						<p class="lh-lg" v-html="art.content"></p>
+						<small class="thin">ویرایش شده در: {{ art.updated }}</small>
 
-            <div class="border p-4">
-              <p class="my-0">:اشتراک گذاری در</p>
-              <a :href="`https://t.me/share/url?url=https://carberat.com/article/${slug}&text=${art.title}`" target="_blank">
-                <i class="fab fa-telegram fs-2"></i>
-              </a>
+						<div class="border p-4">
+							<p class="my-0">:اشتراک گذاری در</p>
+							<a :href="`https://t.me/share/url?url=https://carberat.com/article/${slug}&text=${art.title}`"
+								target="_blank">
+								<i class="fab fa-telegram fs-2"></i>
+							</a>
 
-              <a :href="`http://twitter.com/share?text=${art.title}&url=https://carberat.com/article/${slug}`" target="_blank">
-                <i class="fab fa-twitter fs-2 mx-2"></i>
-              </a>
-            </div>
+							<a :href="`http://twitter.com/share?text=${art.title}&url=https://carberat.com/article/${slug}`"
+								target="_blank">
+								<i class="fab fa-twitter fs-2 mx-2"></i>
+							</a>
+						</div>
 					</div>
 
 				</div>
@@ -114,8 +120,9 @@ export default {
 				})
 		}
 		getArticleData()
+
 		axios
-			.get('blog/articles/')
+			.get('blog/main-articles/')
 			.then(res => {
 				articlesData.value = res.data
 				macLoading.value = false
@@ -131,7 +138,7 @@ export default {
 			getArticleData,
 			loadingCard,
 			macLoading,
-      slug
+			slug
 		}
 	}
 }
@@ -150,9 +157,17 @@ export default {
 	text-decoration: underline;
 }
 
-.img-thumbnail{
-  width: 33%;
-  height: auto;
-  min-width: 75px
+.img-thumbnail {
+	width: 33%;
+	height: auto;
+	min-width: 75px
 }
+
+@media screen and (max-width: 767px) {
+	.sidebar {
+		min-width: 300px;
+	}	
+}
+
+
 </style>
