@@ -1,11 +1,17 @@
 <template>
 
+	<metainfo>
+    <template v-slot:title="{ content }">{{ content }}</template>
+  </metainfo>
+
 	<div class="container ContactUs">
 		<div class="row">
 			<div class="col-md-8 mx-auto">
-				<p class="fs-5 mt-3">شما میتوانید از طریق فرم زیر با ما در ارتباط. لطفا انتقادات و پیشنهاد های خود را به ما
+				<p class="fs-5 mt-3">شما میتوانید از طریق فرم زیر با ما در ارتباط. لطفا انتقادات و پیشنهاد های خود را به
+					ما
 					منتقل
-					کرده و زمینه پیشرفت ما را فراهم سازید. همچنین میتوانید از طریق ایمیل و شماره همراه زیر نیز با ما ارتباط برقرار
+					کرده و زمینه پیشرفت ما را فراهم سازید. همچنین میتوانید از طریق ایمیل و شماره همراه زیر نیز با ما
+					ارتباط برقرار
 					کنید.</p>
 			</div>
 		</div>
@@ -16,24 +22,25 @@
 				<div class="col-md-9 mb-md-0 mb-5">
 					<form id="contact-form">
 
-            <div v-if="loading">
-              <LoadingCard />
-            </div>
+						<div v-if="loading">
+							<LoadingCard />
+						</div>
 
 						<div class="row">
 
 
 							<div class="col-md-6">
 								<div class="form-floating mb-3">
-									<input v-model="fullName" type="name" class="form-control form-control-cantact" id="nameInput" placeholder="example">
+									<input v-model="fullName" type="name" class="form-control form-control-cantact"
+										id="nameInput" placeholder="example">
 									<label for="nameInput">نام و نام خانوادگی</label>
 								</div>
 							</div>
 
 							<div class="col-md-6">
 								<div class="form-floating mb-3">
-									<input v-model="email" type="email" class="form-control form-control-cantact" id="emailInput"
-										placeholder="name@example.com">
+									<input v-model="email" type="email" class="form-control form-control-cantact"
+										id="emailInput" placeholder="name@example.com">
 									<label for="emailInput">ایمیل</label>
 								</div>
 							</div>
@@ -43,7 +50,8 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-floating mb-3">
-									<input v-model="subject" type="text" class="form-control form-control-cantact" id="subjectInput" placeholder="example">
+									<input v-model="subject" type="text" class="form-control form-control-cantact"
+										id="subjectInput" placeholder="example">
 									<label for="subjectInput">موضوع</label>
 								</div>
 							</div>
@@ -54,7 +62,8 @@
 							<div class="col-md-12">
 
 								<div class="form-floating mb-3">
-									<textarea v-model="content" class="form-control form-control-cantact" placeholder="Leave a message here" id="textareaInput"
+									<textarea v-model="content" class="form-control form-control-cantact"
+										placeholder="Leave a message here" id="textareaInput"
 										style="height: 100px"></textarea>
 									<label for="textareaInput">پیام</label>
 								</div>
@@ -76,7 +85,8 @@
 					<ul class="list-unstyled mb-0">
 						<li><svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor"
 								class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-								<path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+								<path
+									d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
 							</svg>
 							<p>ایران, مشهد</p>
 						</li>
@@ -112,23 +122,46 @@ import Swal from 'sweetalert2'
 import { ref } from "vue";
 import axios from 'axios'
 import LoadingCard from '@/components/LoadingCard.vue';
+import { useMeta } from 'vue-meta';
 
 export default {
-  components: {
-    LoadingCard
-  },
+	components: {
+		LoadingCard
+	},
 	setup() {
+		useMeta({
+      title: "تماس با ما | کاربرات",
+      description: "در کاربرات شما میتوانید بروز ترین مقالات راجب به انواع ماشین ها و قطعات و نحوه تعمیر آنها در سریعترین زمان ممکن بخوانید",
+      robots: "index, follow",
+      keywords: "کاربرات, خودرو, مقاله خودرو, مقاله ماشین, تعمیر ماشین",
+      googlebot: "index, follow",
+      author: "اشکان رزمی",
+      owner: "امین مهری",
+      canonical: "https://carberat.com/contact",
+      'og:type': "contact-carberat",
+      'og:title': "carberat",
+      'og:description': "در کاربرات شما میتوانید بروز ترین مقالات راجب به انواع ماشین ها و قطعات و نحوه تعمیر آنها در سریعترین زمان ممکن بخوانید.",
+      'og:site_name': "کاربرات|تماس با ما",
+      'og:url': "https://carberat.com/contact",
+      'og:image': "https://carberat.com/media/image.jpg",
+      'twitter:title': "کاربرات|تماس با ما",
+      'twitter:description': "در کاربرات شما میتوانید بروز ترین مقالات راجب به انواع ماشین ها و قطعات و نحوه تعمیر آنها در سریعترین زمان ممکن بخوانید.",
+      'twitter:site': "https://twitter.com/aminem_mehri",
+      'twitter:card': "Summary Card",
+      'twitter:image': "https://carberat.com/media/image.jpg",
+    });
+
 		let fullName = ref('')
 		let email = ref('')
 		let subject = ref('')
 		let content = ref('')
 
-    let loading = ref(false)
+		let loading = ref(false)
 
 
 		function sendMessage() {
 			if (document.getElementById('nameInput').value.length != 0 && document.getElementById('emailInput').value.length != 0 && document.getElementById('subjectInput').value.length != 0 && document.getElementById('textareaInput').value.length != 0) {
-        loading.value = true
+				loading.value = true
 				axios
 					.post('blog/contact/', {
 						'full_name': fullName.value,
@@ -143,7 +176,7 @@ export default {
 							icon: 'success',
 						});
 
-            loading.value = false
+						loading.value = false
 
 						fullName.value = '';
 						email.value = '';
@@ -151,7 +184,7 @@ export default {
 						content.value = '';
 					})
 					.catch(error => {
-            loading.value = false
+						loading.value = false
 						Swal.fire({
 							text: "لطفا مقادیر مورد نظر را به درستی وارد کنید",
 							icon: 'error',
@@ -175,7 +208,7 @@ export default {
 			email,
 			subject,
 			content,
-      loading
+			loading
 		}
 	},
 }

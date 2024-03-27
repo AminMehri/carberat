@@ -1,4 +1,9 @@
 <template>
+
+	<metainfo>
+		<template v-slot:title="{ content }">{{ content }}</template>
+	</metainfo>
+
 	<div class="home">
 		<div class="container-fluid">
 			<div class="row justify-content-center">
@@ -14,8 +19,7 @@
 						<router-link v-for="article in articlesData" @click="getArticleData(article.slug)"
 							:to="`/article/${article.slug}`" class="d-flex align-items-center my-3 p-1">
 							<p class="bold article-title p-2">{{ article.title }}</p>
-							<img :src="`http://127.0.0.1:8000${article.thumbnail}`" class="img-thumbnail" alt=""
-								srcset="">
+							<img :src="`http://127.0.0.1:8000${article.thumbnail}`" class="img-thumbnail" :alt="`${article.title}`">
 						</router-link>
 
 					</div>
@@ -73,11 +77,12 @@
 
 <script>
 import axios from 'axios'
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import LoadingCard from '@/components/LoadingCard.vue'
 import MacLoading from '@/components/MacLoading.vue'
 import { useRoute } from 'vue-router'
 import { Swal } from 'sweetalert2'
+import { useMeta } from 'vue-meta';
 
 
 export default {
@@ -96,6 +101,11 @@ export default {
 
 		let slug = ref(route.params.slug)
 
+		let metaTitle = ref()
+		let metaDescription = ref()
+		let metaKeyWords = ref()
+		let thumbnailImg = ref()
+
 		function getArticleData(sl) {
 			document.body.scrollTop = 0; // For Safari
 			document.documentElement.scrollTop = 0;
@@ -112,10 +122,48 @@ export default {
 				})
 				.then(res => {
 					singleArticleData.value = res.data
+
+					metaTitle.value = singleArticleData.value[0].meta_title
+					metaDescription.value = singleArticleData.value[0].meta_description
+					metaKeyWords.value = singleArticleData.value[0].key_words
+					thumbnailImg.value = singleArticleData.value[0].thumbnail
+
+					var meta = document.createElement('meta');
+					meta.name='description';
+					meta.setAttribute('content', metaDescription.value);
+					document.getElementsByTagName('head')[0].appendChild(meta);
+
+					var meta = document.createElement('meta');
+					meta.name='og:description';
+					meta.setAttribute('content', metaDescription.value);
+					document.getElementsByTagName('head')[0].appendChild(meta);
+
+					var meta = document.createElement('meta');
+					meta.name='title';
+					meta.setAttribute('content', metaTitle.value);
+					document.getElementsByTagName('head')[0].appendChild(meta);
+
+					var meta = document.createElement('meta');
+					meta.name='keywords';
+					meta.setAttribute('content', metaKeyWords.value);
+					document.getElementsByTagName('head')[0].appendChild(meta);
+
+					var meta = document.createElement('meta');
+					meta.name='canonical';
+					meta.setAttribute('content', `https://carberat.com/article/${slug.value}`);
+					document.getElementsByTagName('head')[0].appendChild(meta);
+
+					var meta = document.createElement('meta');
+					meta.name='og:image';
+					meta.setAttribute('content', `https://carberat.com${thumbnailImg.value}`);
+					document.getElementsByTagName('head')[0].appendChild(meta);
+
+					document.title  = `کاربرات | ${metaTitle.value}`
+
 					loadingCard.value = false
 				})
 				.catch(error => {
-					console.log(error.response);
+					console.log(error);
 					loadingCard.value = false
 				})
 		}
@@ -131,6 +179,18 @@ export default {
 				console.log(error.response);
 				macLoading.value = false
 			})
+		
+		useMeta({
+			robots: "index, follow",
+			googlebot: "index, follow",
+			author: "اشکان رزمی",
+			owner: "امین مهری",
+			'og:type': "contact-carberat",
+			'og:title': "carberat",
+			'og:url': `https://carberat.com/article/${slug.value}`,
+			'twitter:site': "https://twitter.com/aminem_mehri",
+			'twitter:card': "Summary Card",
+		});
 
 		return {
 			singleArticleData,

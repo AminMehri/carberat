@@ -1,4 +1,9 @@
 <template>
+
+  <metainfo>
+    <template v-slot:title="{ content }">{{ content }}</template>
+  </metainfo>
+
   <div class="home">
     <div class="container-fluid">
       <div class="row">
@@ -11,7 +16,7 @@
             
             <router-link v-for="article in articlesData" :to="`/article/${article.slug}`" class="d-flex align-items-center my-3 p-1">
               <p class="bold article-title p-2">{{article.title}}</p>
-              <img :src="`http://127.0.0.1:8000${article.thumbnail}`" class="img-thumbnail" alt="" srcset="">
+              <img :src="`http://127.0.0.1:8000${article.thumbnail}`" class="img-thumbnail" :alt="`${article.title}`">
             </router-link>
 
           </div>
@@ -26,7 +31,7 @@
               <div class="row align-items-center category-card">
 
                 <div class="col-lg-4">
-                  <img :src="`http://127.0.0.1:8000${cat.thumbnail}`" class="img-fluid rounded-start" alt="...">
+                  <img :src="`http://127.0.0.1:8000${cat.thumbnail}`" class="img-fluid rounded-start" :alt="`${cat.title}`">
                 </div>
                 
                 <div class="col-lg-8">
@@ -53,7 +58,7 @@ import axios from 'axios'
 import { ref } from 'vue';
 import LoadingCard from '@/components/LoadingCard.vue'
 import MacLoading from '@/components/MacLoading.vue'
-
+import { useMeta } from 'vue-meta';
 
 export default{
   components: {
@@ -62,6 +67,28 @@ export default{
   },
 
   setup(){
+    useMeta({
+      title: "صفحه اصلی | کاربرات",
+      description: "در کاربرات شما میتوانید بروز ترین مقالات راجب به انواع ماشین ها و قطعات و نحوه تعمیر آنها در سریعترین زمان ممکن بخوانید",
+      robots: "index, follow",
+      keywords: "کاربرات, خودرو, مقاله خودرو, مقاله ماشین, تعمیر ماشین",
+      googlebot: "index, follow",
+      author: "اشکان رزمی",
+      owner: "امین مهری",
+      canonical: "https://carberat.com/",
+      'og:type': "carberat",
+      'og:title': "carberat",
+      'og:description': "در کاربرات شما میتوانید بروز ترین مقالات راجب به انواع ماشین ها و قطعات و نحوه تعمیر آنها در سریعترین زمان ممکن بخوانید.",
+      'og:site_name': "کاربرات|صفحه اصلی",
+      'og:url': "https://carberat.com/",
+      'og:image': "https://carberat.com/media/image.jpg",
+      'twitter:title': "کاربرات|صفحه اصلی",
+      'twitter:description': "در کاربرات شما میتوانید بروز ترین مقالات راجب به انواع ماشین ها و قطعات و نحوه تعمیر آنها در سریعترین زمان ممکن بخوانید.",
+      'twitter:site': "https://twitter.com/aminem_mehri",
+      'twitter:card': "Summary Card",
+      'twitter:image': "https://carberat.com/media/image.jpg",
+    });
+
     let categoriesData = ref([])
     let articlesData = ref([])
     let loadingCard = ref(true)

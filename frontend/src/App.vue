@@ -15,7 +15,17 @@ export default {
   components: {
     Navbar,
     Footer
-  } 
+  }, 
+  watch: {
+    $route() {
+      if (document.querySelector("[name='description']")) document.querySelector("[name='description']").remove()
+      if (document.querySelector("[name='og:description']")) document.querySelector("[name='og:description']").remove()
+      if (document.querySelector("[name='title']")) document.querySelector("[name='title']").remove()
+      if (document.querySelector("[name='keywords']")) document.querySelector("[name='keywords']").remove()
+      if (document.querySelector("[name='canonical']")) document.querySelector("[name='canonical']").remove()
+      if (document.querySelector("[name='og:image']")) document.querySelector("[name='og:image']").remove()
+    }
+  }
 }
 </script>
 

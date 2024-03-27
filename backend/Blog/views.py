@@ -73,6 +73,10 @@ class ShowSingleArticle(APIView):
             'eng_title': article.eng_title,
             'content': article.content,
             'category': [[a.title, a.slug] for a in article.category.published()],
+            'meta_title': article.meta_title,
+            'meta_description': article.meta_description,
+            'key_words': article.key_words,
+            'thumbnail': article.thumbnail.url,
             'updated': datetime2jalali(article.date).strftime('14%y/%m/%d _ %H:%M'),
         }]
         return Response(data, status=status.HTTP_200_OK)
@@ -109,6 +113,10 @@ class ShowSingleCategory(APIView):
             'title': category.title,
             'content': category.content,
             'parent': category.parent.title if category.parent else None,
+            'meta_title': category.meta_title,
+            'meta_description': category.meta_description,
+            'key_words': category.key_words,
+            'thumbnail': category.thumbnail.url,
             'date': datetime2jalali(category.date).strftime('14%y/%m/%d _ %H:%M'),
         }]
         return Response(data, status=status.HTTP_200_OK)
