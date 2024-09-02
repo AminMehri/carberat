@@ -28,7 +28,7 @@
             <div class="row align-items-center category-card">
 
               <div class="col-lg-4">
-                <img :src="`http://127.0.0.1:8000${art.thumbnail}`" class="img-fluid rounded-start" :alt="`${art.title}`">
+                <img :src="`https://api.carberat.com${art.thumbnail}`" class="img-fluid rounded-start" :alt="`${art.title}`">
               </div>
 
               <div class="col-lg-8">

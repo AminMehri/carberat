@@ -16,7 +16,7 @@
             
             <router-link v-for="article in articlesData" :to="`/article/${article.slug}`" class="d-flex align-items-center my-3 p-1">
               <p class="bold article-title p-2">{{article.title}}</p>
-              <img :src="`http://127.0.0.1:8000${article.thumbnail}`" class="img-thumbnail" :alt="`${article.title}`">
+              <img :src="`https://api.carberat.com${article.thumbnail}`" class="img-thumbnail" :alt="`${article.title}`">
             </router-link>
 
           </div>
@@ -31,7 +31,7 @@
               <div class="row align-items-center category-card">
 
                 <div class="col-lg-4">
-                  <img :src="`http://127.0.0.1:8000${cat.thumbnail}`" class="img-fluid rounded-start" :alt="`${cat.title}`">
+                  <img :src="`https://api.carberat.com${cat.thumbnail}`" class="img-fluid rounded-start" :alt="`${cat.title}`">
                 </div>
                 
                 <div class="col-lg-8">
